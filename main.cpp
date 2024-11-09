@@ -8,7 +8,7 @@ using namespace std;
 
 // Define a function to simulate a game collection over time
     // Parameters: map of video game conditions, number of intervals
-void simulateGame(map<string, vector<list<string>>>, int);
+void simulateGame(map<string, vector<list<string>>>, vector<string>, int);
 void printCollection(map<string, vector<list<string>>>);
 
 // Define main function
@@ -21,20 +21,7 @@ int main() {
 
     // Open an external file to read initial data about game's condition and populate the map
         // If file does not open, print an error and exit
-    ifs.open("data.txt");
-    if (ifs)
-    {
-        // Read data from file and populate map
-        // For each line, extract game condition, and game genre
-        // Insert game into the appropriate list in the array for their genre
-
-        // Close the file
-    }
-    else
-    {
-        cout << "ERROR: Could not read file" << endl;
-        exit(EXIT_FAILURE);
-    }
+    collection.insert({{"New"}});
 
     ifs.open("games.txt");
     if (ifs)
@@ -42,9 +29,9 @@ int main() {
         for (size_t i = 0; i < 99; i++)
         {
             getline(ifs, title);
-            title.push_back(games);
+            games.push_back(title);
         }
-        
+        ifs.close();
     }
     else
     {
@@ -54,13 +41,14 @@ int main() {
 
     // Begin a time-based simulation for game collection
         // For 20 time intervals
-    simulateGame(collection, 20);
+    simulateGame(collection, games, 20);
     // End of main function
 }
 
-void simulateGame(map<string, vector<list<string>>> gameCollection, int interval)
+void simulateGame(map<string, vector<list<string>>> gameCollection, vector<string> gamesVec, int interval)
 {
     int prob;
+    int ran;
     int countGenres = 3;
     string genre[countGenres] = {"Action", "Platformer", "Open-world"}; 
     
@@ -80,7 +68,8 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, int interval
                 // If adding, generate or select a new game title to add to the list
                 if (prob <= 50)
                 {
-
+                    ran = rand() % 99;
+                    x.second[j].push_back(gamesVec[ran]);
                     cout << "Bought " << x.second[j].back() << " for " << genre[j] << x.first << endl;
                     prob = rand() % 100 + 1;
                 }
