@@ -16,16 +16,35 @@ int main() {
     // Initializes a map to store video game collection information, each associated with and array of lists for game genres like action, platformer, and open world
     map<string, vector<list<string>>> collection;
     vector<string> games;
-    vector<list<string>> genres;
+    vector<list<string>> genres1;
+    vector<list<string>> genres2;
+    vector<list<string>> genres3;
     string title;
     ifstream ifs;
 
     // Open an external file to read initial data about game's condition and populate the map
         // If file does not open, print an error and exit
-    list<string> action = {};
-    list<string> platformer = {};
-    list<string> open_world = {};
-    collection.insert({"New", genres});
+    list<string> action1 = {"ActionGame"};
+    genres1.push_back(action1);
+    list<string> platformer1 = {"PlatformGame"};
+    genres1.push_back(platformer1);
+    list<string> open_world1 = {"OpenWorldGame"};
+    genres1.push_back(open_world1);
+    list<string> action2 = {"CallofDuty1"};
+    genres2.push_back(action2);
+    list<string> platformer2 = {"SuperMarioBros"};
+    genres2.push_back(platformer2);
+    list<string> open_world2 = {"BreathofTheWild"};
+    genres2.push_back(open_world2);
+    list<string> action3 = {"CallofDuty2"};
+    genres3.push_back(action3);
+    list<string> platformer3 = {"SuperMarioBros2"};
+    genres3.push_back(platformer3);
+    list<string> open_world3 = {"TearsofTheKingdom"};
+    genres3.push_back(open_world3);
+    collection.insert({"New", genres1});
+    collection.insert({"Used", genres2});
+    collection.insert({"Very Good", genres3});
 
     ifs.open("games.txt");
     if (ifs)
