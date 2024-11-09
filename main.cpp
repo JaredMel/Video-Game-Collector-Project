@@ -1,13 +1,29 @@
 // Include necessary headers for file handling, data structures, etc.
+#include <iostream>
+#include <fstream>
+#include <map>
+#include <list>
+using namespace std;
 
 // Define a function to simulate a game collection over time
-    //Parameters: map of video game conditions, number of intervals
+    // Parameters: map of video game conditions, number of intervals
+void simulateGame(map<string, list<string>, list<string>, list<string>>, int);
 
 // Define main function
+int main() {
     // Initializes a map to store video game collection information, each associated with and array of lists for game genres like action, platformer, and open world
+    map<string, list<string>, list<string>, list<string>> collection;
 
     // Open an external file to read initial data about game's condition and populate the map
         // If file does not open, print an error and exit
+    ifstream ifs("data.txt");
+    while (ifs)
+    {
+        /* code */
+    }
+    
+    
+}
 
     // Read data from file and populate map
         // For each line, extract game condition, and game genre
