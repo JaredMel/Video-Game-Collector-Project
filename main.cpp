@@ -13,10 +13,11 @@ void simulateGame(map<string, list<string>, list<string>, list<string>>, int);
 int main() {
     // Initializes a map to store video game collection information, each associated with and array of lists for game genres like action, platformer, and open world
     map<string, list<string>, list<string>, list<string>> collection;
+    ifstream ifs;
 
     // Open an external file to read initial data about game's condition and populate the map
         // If file does not open, print an error and exit
-    ifstream ifs("data.txt");
+    ifs.open("data.txt");
     if (ifs)
     {
         // Read data from file and populate map
@@ -28,6 +29,7 @@ int main() {
     else
     {
         cout << "ERROR: Could not read file" << endl;
+        exit(EXIT_FAILURE);
     }
 
     // Begin a time-based simulation for game collection
@@ -38,16 +40,24 @@ int main() {
 
 void simulateGame(map<string, list<string>, list<string>, list<string>> gameCollection, int interval)
 {
+    int prob;
+    list<string> iterator it1, it2, it3;
+
     for (size_t i = 0; i < interval; i++)
     {
         // Iterate through each genre in the map
-        for (size_t i = 0; i < count; i++)
+        for (auto genre : gameCollection)
         {
-            /* code */
-        }
-        
+            // For each genre, simulate changes
+            prob = rand() % 100 + 1;
+            
+            if (prob <= 50)
+            {
 
-        // For each genre, simulate changes
+                cout << 
+            }
+            
+        }
                     // Randomly decide if a game will be bought, sold, or returned from each genre (action, platformer, open world)
                         // If adding, generate or select a new game title to add to the list
                         // If selling, select a random game from the list to remove
