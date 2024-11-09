@@ -17,24 +17,37 @@ int main() {
     // Open an external file to read initial data about game's condition and populate the map
         // If file does not open, print an error and exit
     ifstream ifs("data.txt");
-    while (ifs)
+    if (ifs)
     {
-        /* code */
-    }
-    
-    
-}
-
-    // Read data from file and populate map
+        // Read data from file and populate map
         // For each line, extract game condition, and game genre
         // Insert game into the appropriate list in the array for their genre
 
-    // Close the file
+        // Close the file
+    }
+    else
+    {
+        cout << "ERROR: Could not read file" << endl;
+    }
 
     // Begin a time-based simulation for game collection
         // For 20 time intervals
-            // Iterate through each genre in the map
-                // For each genre, simulate changes
+    simulateGame(collection, 20);
+    // End of main function
+}
+
+void simulateGame(map<string, list<string>, list<string>, list<string>> gameCollection, int interval)
+{
+    for (size_t i = 0; i < interval; i++)
+    {
+        // Iterate through each genre in the map
+        for (size_t i = 0; i < count; i++)
+        {
+            /* code */
+        }
+        
+
+        // For each genre, simulate changes
                     // Randomly decide if a game will be bought, sold, or returned from each genre (action, platformer, open world)
                         // If adding, generate or select a new game title to add to the list
                         // If selling, select a random game from the list to remove
@@ -46,4 +59,5 @@ int main() {
                 // trends, low on money, etc.
 
                 // Wait or pause briefly to simulate the passage of time between intervals
-// End of main function
+    }
+}
