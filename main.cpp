@@ -16,12 +16,16 @@ int main() {
     // Initializes a map to store video game collection information, each associated with and array of lists for game genres like action, platformer, and open world
     map<string, vector<list<string>>> collection;
     vector<string> games;
+    vector<list<string>> genres;
     string title;
     ifstream ifs;
 
     // Open an external file to read initial data about game's condition and populate the map
         // If file does not open, print an error and exit
-    collection.insert({{"New"}});
+    list<string> action = {};
+    list<string> platformer = {};
+    list<string> open_world = {};
+    collection.insert({"New", genres});
 
     ifs.open("games.txt");
     if (ifs)
