@@ -41,7 +41,8 @@ int main() {
 void simulateGame(map<string, list<string>, list<string>, list<string>> gameCollection, int interval)
 {
     int prob;
-    list<string>::iterator it1, it2, it3;
+    string conditions[3] = {"New", "Used", "Very Good"};
+    
 
     for (size_t i = 0; i < interval; i++)
     {
@@ -66,6 +67,7 @@ void simulateGame(map<string, list<string>, list<string>, list<string>> gameColl
             // If returning, select a random game from the list to remove only with a different message
             if (prob <= 10)
             {
+                cout << "Returned " << x.second.back() << " for " << x.second
                 x.second.pop_back();
                 prob = rand() % 100 + 1;
             }
