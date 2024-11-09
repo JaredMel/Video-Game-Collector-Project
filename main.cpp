@@ -41,27 +41,35 @@ int main() {
 void simulateGame(map<string, list<string>, list<string>, list<string>> gameCollection, int interval)
 {
     int prob;
-    list<string> iterator it1, it2, it3;
+    list<string>::iterator it1, it2, it3;
 
     for (size_t i = 0; i < interval; i++)
     {
         // Iterate through each genre in the map
-        for (auto genre : gameCollection)
+        for (auto x : gameCollection)
         {
             // For each genre, simulate changes
+            // Randomly decide if a game will be bought, sold, or returned from each genre (action, platformer, open world)
             prob = rand() % 100 + 1;
             
+            // If adding, generate or select a new game title to add to the list
             if (prob <= 50)
             {
-
-                cout << 
+                prob = rand() % 100 + 1;
             }
-            
+            // If selling, select a random game from the list to remove
+            if (prob <= 20)
+            {
+                x.second.pop_front();
+                prob = rand() % 100 + 1;
+            }
+            // If returning, select a random game from the list to remove only with a different message
+            if (prob <= 10)
+            {
+                x.second.pop_back();
+                prob = rand() % 100 + 1;
+            }
         }
-                    // Randomly decide if a game will be bought, sold, or returned from each genre (action, platformer, open world)
-                        // If adding, generate or select a new game title to add to the list
-                        // If selling, select a random game from the list to remove
-                        // If returning, select a random game from the list to remove only with a different message
                     // Print the changes for this interval, e.g. "Bought {title} for {genre} in {condition}"
 
                 // Simulate more complex collection changes
