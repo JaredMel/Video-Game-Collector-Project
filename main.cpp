@@ -43,9 +43,8 @@ int main() {
 void simulateGame(map<string, vector<list<string>>> gameCollection, int interval)
 {
     int prob;
-    string genre[3] = {"Action", "Platformer", "Open-world"}; 
-    int count = 0;
     int countGenres = 3;
+    string genre[countGenres] = {"Action", "Platformer", "Open-world"}; 
     
 
     for (size_t i = 0; i < interval; i++)
@@ -68,14 +67,14 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, int interval
                 // If selling, select a random game from the list to remove
                 if (prob <= 20)
                 {
-                    cout << "Sold " << x.second.front() << " for " << genre[count] << x.first << endl;
+                    cout << "Sold " << x.second[j].front() << " for " << genre[j] << x.first << endl;
                     x.second[j].pop_front();
                     prob = rand() % 100 + 1;
                 }
                 // If returning, select a random game from the list to remove only with a different message
                 if (prob <= 10)
                 {
-                    cout << "Returned " << x.second.back() << " for " << genre[count] << x.first << endl;
+                    cout << "Returned " << x.second[j].back() << " for " << genre[j] << x.first << endl;
                     x.second[j].pop_back();
                     prob = rand() % 100 + 1;
                 }
@@ -92,13 +91,24 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, int interval
     }
 }
 
-void printCollection(map<string, list<string>, list<string>, list<string>> gameCollection)
+void printCollection(map<string, vector<list<string>>> gameCollection)
 {
+    int countGenres = 3;
+    string genre[countGenres] = {"Action", "Platformer", "Open-world"}; 
+
     for (auto x : gameCollection)
     {
         cout << "Collection:" << endl;
         cout << "   " << x.first << ":" << endl;
-        cout << "       " << x.second << endl;
+        for (size_t i = 0; i < countGenres; i++)
+        {
+            cout << "       " << genre[i] << ":" << endl;
+            for (string game : x.second[i])
+            {
+                cout << "           " << game << endl;
+            }
+        }
     }
+    cout << endl;
 }
 //"New", "Used", "Very Good"
