@@ -15,6 +15,8 @@ void printCollection(map<string, vector<list<string>>>);
 int main() {
     // Initializes a map to store video game collection information, each associated with and array of lists for game genres like action, platformer, and open world
     map<string, vector<list<string>>> collection;
+    vector<string> games;
+    string title;
     ifstream ifs;
 
     // Open an external file to read initial data about game's condition and populate the map
@@ -27,6 +29,22 @@ int main() {
         // Insert game into the appropriate list in the array for their genre
 
         // Close the file
+    }
+    else
+    {
+        cout << "ERROR: Could not read file" << endl;
+        exit(EXIT_FAILURE);
+    }
+
+    ifs.open("games.txt");
+    if (ifs)
+    {
+        for (size_t i = 0; i < 99; i++)
+        {
+            getline(ifs, title);
+            title.push_back(games);
+        }
+        
     }
     else
     {
@@ -62,6 +80,8 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, int interval
                 // If adding, generate or select a new game title to add to the list
                 if (prob <= 50)
                 {
+
+                    cout << "Bought " << x.second[j].back() << " for " << genre[j] << x.first << endl;
                     prob = rand() % 100 + 1;
                 }
                 // If selling, select a random game from the list to remove
