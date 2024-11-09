@@ -41,7 +41,8 @@ int main() {
 void simulateGame(map<string, list<string>, list<string>, list<string>> gameCollection, int interval)
 {
     int prob;
-    string conditions[3] = {"New", "Used", "Very Good"};
+    string genre[3] = {"Action", "Platformer", "Open-world"}; 
+    int count = 0;
     
 
     for (size_t i = 0; i < interval; i++)
@@ -61,13 +62,14 @@ void simulateGame(map<string, list<string>, list<string>, list<string>> gameColl
             // If selling, select a random game from the list to remove
             if (prob <= 20)
             {
+                cout << "Sold " << x.second.front() << " for " << genre[count] << x.first;
                 x.second.pop_front();
                 prob = rand() % 100 + 1;
             }
             // If returning, select a random game from the list to remove only with a different message
             if (prob <= 10)
             {
-                cout << "Returned " << x.second.back() << " for " << x.second
+                cout << "Returned " << x.second.back() << " for " << genre[count] << x.first;
                 x.second.pop_back();
                 prob = rand() % 100 + 1;
             }
@@ -81,3 +83,4 @@ void simulateGame(map<string, list<string>, list<string>, list<string>> gameColl
                 // Wait or pause briefly to simulate the passage of time between intervals
     }
 }
+//"New", "Used", "Very Good"
