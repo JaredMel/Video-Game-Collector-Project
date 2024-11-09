@@ -1,0 +1,3 @@
+ActionGame PlatformGame OpenWorldGame
+CallofDuty1 SuperMarioBros BreathofTheWild
+CallofDuty2 SuperMarioBros2 TearsofTheKingdom
