@@ -2,17 +2,19 @@
 #include <iostream>
 #include <fstream>
 #include <map>
+#include <vector>
 #include <list>
 using namespace std;
 
 // Define a function to simulate a game collection over time
     // Parameters: map of video game conditions, number of intervals
-void simulateGame(map<string, list<string>, list<string>, list<string>>, int);
+void simulateGame(map<string, vector<list<string>>>, int);
+void printCollection(map<string, vector<list<string>>>);
 
 // Define main function
 int main() {
     // Initializes a map to store video game collection information, each associated with and array of lists for game genres like action, platformer, and open world
-    map<string, list<string>, list<string>, list<string>> collection;
+    map<string, vector<list<string>>> collection;
     ifstream ifs;
 
     // Open an external file to read initial data about game's condition and populate the map
@@ -38,42 +40,48 @@ int main() {
     // End of main function
 }
 
-void simulateGame(map<string, list<string>, list<string>, list<string>> gameCollection, int interval)
+void simulateGame(map<string, vector<list<string>>> gameCollection, int interval)
 {
     int prob;
     string genre[3] = {"Action", "Platformer", "Open-world"}; 
     int count = 0;
+    int countGenres = 3;
     
 
     for (size_t i = 0; i < interval; i++)
     {
+        cout << "Year #" << i+1 << ":" << endl;
         // Iterate through each genre in the map
         for (auto x : gameCollection)
         {
-            // For each genre, simulate changes
-            // Randomly decide if a game will be bought, sold, or returned from each genre (action, platformer, open world)
-            prob = rand() % 100 + 1;
+            for (size_t j = 0; j < countGenres; j++)
+            {
+                // For each genre, simulate changes
+                // Randomly decide if a game will be bought, sold, or returned from each genre (action, platformer, open world)
+                prob = rand() % 100 + 1;
             
-            // If adding, generate or select a new game title to add to the list
-            if (prob <= 50)
-            {
-                prob = rand() % 100 + 1;
-            }
-            // If selling, select a random game from the list to remove
-            if (prob <= 20)
-            {
-                cout << "Sold " << x.second.front() << " for " << genre[count] << x.first;
-                x.second.pop_front();
-                prob = rand() % 100 + 1;
-            }
-            // If returning, select a random game from the list to remove only with a different message
-            if (prob <= 10)
-            {
-                cout << "Returned " << x.second.back() << " for " << genre[count] << x.first;
-                x.second.pop_back();
-                prob = rand() % 100 + 1;
+                // If adding, generate or select a new game title to add to the list
+                if (prob <= 50)
+                {
+                    prob = rand() % 100 + 1;
+                }
+                // If selling, select a random game from the list to remove
+                if (prob <= 20)
+                {
+                    cout << "Sold " << x.second.front() << " for " << genre[count] << x.first << endl;
+                    x.second[j].pop_front();
+                    prob = rand() % 100 + 1;
+                }
+                // If returning, select a random game from the list to remove only with a different message
+                if (prob <= 10)
+                {
+                    cout << "Returned " << x.second.back() << " for " << genre[count] << x.first << endl;
+                    x.second[j].pop_back();
+                    prob = rand() % 100 + 1;
+                }
             }
         }
+        printCollection(gameCollection);
                     // Print the changes for this interval, e.g. "Bought {title} for {genre} in {condition}"
 
                 // Simulate more complex collection changes
@@ -81,6 +89,16 @@ void simulateGame(map<string, list<string>, list<string>, list<string>> gameColl
                 // trends, low on money, etc.
 
                 // Wait or pause briefly to simulate the passage of time between intervals
+    }
+}
+
+void printCollection(map<string, list<string>, list<string>, list<string>> gameCollection)
+{
+    for (auto x : gameCollection)
+    {
+        cout << "Collection:" << endl;
+        cout << "   " << x.first << ":" << endl;
+        cout << "       " << x.second << endl;
     }
 }
 //"New", "Used", "Very Good"
