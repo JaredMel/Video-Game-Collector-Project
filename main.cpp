@@ -97,14 +97,14 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, vector<strin
                     prob = rand() % 100 + 1;
                 }
                 // If selling, select a random game from the list to remove
-                if (prob <= 20)
+                if (prob <= 20 && x.second[j].size() > 0)
                 {
                     cout << "Sold " << x.second[j].front() << " for " << genre[j] << x.first << endl;
                     x.second[j].pop_front();
                     prob = rand() % 100 + 1;
                 }
                 // If returning, select a random game from the list to remove only with a different message
-                if (prob <= 10)
+                if (prob <= 10 && x.second[j].size() > 0)
                 {
                     cout << "Returned " << x.second[j].back() << " for " << genre[j] << x.first << endl;
                     x.second[j].pop_back();
@@ -143,4 +143,3 @@ void printCollection(map<string, vector<list<string>>> gameCollection)
     }
     cout << endl;
 }
-//"New", "Used", "Very Good"
