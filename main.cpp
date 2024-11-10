@@ -64,7 +64,7 @@ int main() {
 
     // Begin a time-based simulation for game collection
         // For 20 time intervals
-    simulateGame(collection, games, 1);
+    simulateGame(collection, games, 10);
     // End of main function
 }
 
@@ -89,7 +89,7 @@ void simulateGame(map<string, vector<list<string>>> &gameCollection, vector<stri
                 prob = rand() % 100 + 1;
             
                 // If adding, generate or select a new game title to add to the list
-                if (prob <= 50)
+                if (prob <= 30)
                 {
                     ran = rand() % 99;
                     x->second[j].push_back(gamesVec[ran]);

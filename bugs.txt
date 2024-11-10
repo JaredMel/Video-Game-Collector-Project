@@ -1,5 +1,8 @@
 Collection when printing prints the header more than once. Fixed by changing the pringCollection functions cout statements.
 Collection is printing only the first game in the list. Fixed Collection was fine but the lists weren't being properly updated.
 No space between the genre and the word in when buying, selling, or returning. Fixed by changing the cout to add a space.
-The simulateGame function isn't properly updating the lists when buying, selling, or returning.
+The simulateGame function isn't properly updating the lists when buying, selling, or returning. Fixed changed the range based for loop for iterating through the map to a for loop using .begin and .end.
 Forgot to add condition on the end of each cout statements for buying, selling, or returning. Fixed by adding "condition" to the end of the cout statements.
+The simulateGame function isn't updating the map. Fixed changed the parameters so that the map has a &.
+Could not see full simulation in terminal. Fixed lowered years from 20 to 10.
+Bought is being triggered to many times. Fixed lowered frequency from 50% to 30%.
