@@ -8,8 +8,8 @@ using namespace std;
 
 // Define a function to simulate a game collection over time
     // Parameters: map of video game conditions, number of intervals
-void simulateGame(map<string, vector<list<string>>>, vector<string>, int);
-void printCollection(map<string, vector<list<string>>>);
+void simulateGame(map<string, vector<list<string>>>&, vector<string>, int);
+void printCollection(map<string, vector<list<string>>>&);
 
 // Define main function
 int main() {
@@ -68,7 +68,7 @@ int main() {
     // End of main function
 }
 
-void simulateGame(map<string, vector<list<string>>> gameCollection, vector<string> gamesVec, int interval)
+void simulateGame(map<string, vector<list<string>>> &gameCollection, vector<string> gamesVec, int interval)
 {
     int prob;
     int ran;
@@ -93,20 +93,20 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, vector<strin
                 {
                     ran = rand() % 99;
                     x.second[j].push_back(gamesVec[ran]);
-                    cout << "Bought " << x.second[j].back() << " for " << genre[j] << " in " << x.first << "condition" << endl;
+                    cout << "Bought " << x.second[j].back() << " for " << genre[j] << " in " << x.first << " condition" << endl;
                     prob = rand() % 100 + 1;
                 }
                 // If selling, select a random game from the list to remove
                 if (prob <= 20 && x.second[j].size() > 0)
                 {
-                    cout << "Sold " << x.second[j].front() << " for " << genre[j] << " in " << x.first << "condition" << endl;
+                    cout << "Sold " << x.second[j].front() << " for " << genre[j] << " in " << x.first << " condition" << endl;
                     x.second[j].pop_front();
                     prob = rand() % 100 + 1;
                 }
                 // If returning, select a random game from the list to remove only with a different message
                 if (prob <= 10 && x.second[j].size() > 0)
                 {
-                    cout << "Returned " << x.second[j].back() << " for " << genre[j] << " in " << x.first << "condition" << endl;
+                    cout << "Returned " << x.second[j].back() << " for " << genre[j] << " in " << x.first << " condition" << endl;
                     x.second[j].pop_back();
                     prob = rand() % 100 + 1;
                 }
@@ -116,7 +116,7 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, vector<strin
     }
 }
 
-void printCollection(map<string, vector<list<string>>> gameCollection)
+void printCollection(map<string, vector<list<string>>> &gameCollection)
 {
     int countGenres = 3;
     string genre[countGenres] = {"Action", "Platformer", "Open-world"}; 
