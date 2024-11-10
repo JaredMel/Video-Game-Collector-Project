@@ -64,7 +64,7 @@ int main() {
 
     // Begin a time-based simulation for game collection
         // For 20 time intervals
-    simulateGame(collection, games, 20);
+    simulateGame(collection, games, 1);
     // End of main function
 }
 
@@ -93,33 +93,26 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, vector<strin
                 {
                     ran = rand() % 99;
                     x.second[j].push_back(gamesVec[ran]);
-                    cout << "Bought " << x.second[j].back() << " for " << genre[j] << "in " << x.first << endl;
+                    cout << "Bought " << x.second[j].back() << " for " << genre[j] << " in " << x.first << endl;
                     prob = rand() % 100 + 1;
                 }
                 // If selling, select a random game from the list to remove
                 if (prob <= 20 && x.second[j].size() > 0)
                 {
-                    cout << "Sold " << x.second[j].front() << " for " << genre[j] << "in " << x.first << endl;
+                    cout << "Sold " << x.second[j].front() << " for " << genre[j] << " in " << x.first << endl;
                     x.second[j].pop_front();
                     prob = rand() % 100 + 1;
                 }
                 // If returning, select a random game from the list to remove only with a different message
                 if (prob <= 10 && x.second[j].size() > 0)
                 {
-                    cout << "Returned " << x.second[j].back() << " for " << genre[j] << "in " << x.first << endl;
+                    cout << "Returned " << x.second[j].back() << " for " << genre[j] << " in " << x.first << endl;
                     x.second[j].pop_back();
                     prob = rand() % 100 + 1;
                 }
             }
         }
         printCollection(gameCollection);
-                    // Print the changes for this interval, e.g. "Bought {title} for {genre} in {condition}"
-
-                // Simulate more complex collection changes
-                // random events impacting collection
-                // trends, low on money, etc.
-
-                // Wait or pause briefly to simulate the passage of time between intervals
     }
 }
 

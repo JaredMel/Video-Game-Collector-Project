@@ -1,0 +1,3 @@
+Collection when printing prints the header more than once. Fixed by changing the pringCollection functions cout statements
+Collection is printing only the first game in the list.
+No space between the genre and the word in when buying, selling, or returning. Fixed by changing the cout to add a space.
