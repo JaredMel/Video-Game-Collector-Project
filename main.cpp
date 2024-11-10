@@ -8,8 +8,8 @@ using namespace std;
 
 // Define a function to simulate a game collection over time
     // Parameters: map of video game conditions, number of intervals
-void simulateGame(map<string, vector<list<string>>>, vector<string>, int);
-void printCollection(map<string, vector<list<string>>>);
+void simulateGame(map<string, vector<list<string>>>&, vector<string>, int);
+void printCollection(map<string, vector<list<string>>>&);
 
 // Define main function
 int main() {
@@ -64,11 +64,11 @@ int main() {
 
     // Begin a time-based simulation for game collection
         // For 20 time intervals
-    simulateGame(collection, games, 20);
+    simulateGame(collection, games, 10);
     // End of main function
 }
 
-void simulateGame(map<string, vector<list<string>>> gameCollection, vector<string> gamesVec, int interval)
+void simulateGame(map<string, vector<list<string>>> &gameCollection, vector<string> gamesVec, int interval)
 {
     int prob;
     int ran;
@@ -79,8 +79,9 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, vector<strin
     for (size_t i = 0; i < interval; i++)
     {
         cout << "Year #" << i+1 << ":" << endl;
+        int spendingLimit = rand() % 5 + 1;
         // Iterate through each genre in the map
-        for (auto x : gameCollection)
+        for (auto x = gameCollection.begin(); x != gameCollection.end(); x++)
         {
             for (size_t j = 0; j < countGenres; j++)
             {
@@ -89,41 +90,37 @@ void simulateGame(map<string, vector<list<string>>> gameCollection, vector<strin
                 prob = rand() % 100 + 1;
             
                 // If adding, generate or select a new game title to add to the list
-                if (prob <= 50)
+                if (prob <= 30 && spendingLimit > 0)
                 {
                     ran = rand() % 99;
-                    x.second[j].push_back(gamesVec[ran]);
-                    cout << "Bought " << x.second[j].back() << " for " << genre[j] << "in " << x.first << endl;
+                    x->second[j].push_back(gamesVec[ran]);
+                    cout << "Bought " << x->second[j].back() << " for " << genre[j] << " in " << x->first << " condition" << endl;
                     prob = rand() % 100 + 1;
+                    spendingLimit--;
                 }
                 // If selling, select a random game from the list to remove
-                if (prob <= 20 && x.second[j].size() > 0)
+                if (prob <= 20 && x->second[j].size() > 0)
                 {
-                    cout << "Sold " << x.second[j].front() << " for " << genre[j] << "in " << x.first << endl;
-                    x.second[j].pop_front();
+                    cout << "Sold " << x->second[j].front() << " for " << genre[j] << " in " << x->first << " condition" << endl;
+                    x->second[j].pop_front();
                     prob = rand() % 100 + 1;
+                    spendingLimit++;
                 }
                 // If returning, select a random game from the list to remove only with a different message
-                if (prob <= 10 && x.second[j].size() > 0)
+                if (prob <= 10 && x->second[j].size() > 0)
                 {
-                    cout << "Returned " << x.second[j].back() << " for " << genre[j] << "in " << x.first << endl;
-                    x.second[j].pop_back();
+                    cout << "Returned " << x->second[j].back() << " for " << genre[j] << " in " << x->first << " condition" << endl;
+                    x->second[j].pop_back();
                     prob = rand() % 100 + 1;
+                    spendingLimit++;
                 }
             }
         }
         printCollection(gameCollection);
-                    // Print the changes for this interval, e.g. "Bought {title} for {genre} in {condition}"
-
-                // Simulate more complex collection changes
-                // random events impacting collection
-                // trends, low on money, etc.
-
-                // Wait or pause briefly to simulate the passage of time between intervals
     }
 }
 
-void printCollection(map<string, vector<list<string>>> gameCollection)
+void printCollection(map<string, vector<list<string>>> &gameCollection)
 {
     int countGenres = 3;
     string genre[countGenres] = {"Action", "Platformer", "Open-world"}; 
