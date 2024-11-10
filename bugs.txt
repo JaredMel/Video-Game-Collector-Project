@@ -6,3 +6,5 @@ Forgot to add condition on the end of each cout statements for buying, selling, 
 The simulateGame function isn't updating the map. Fixed changed the parameters so that the map has a &.
 Could not see full simulation in terminal. Fixed lowered years from 20 to 10.
 Bought is being triggered to many times. Fixed lowered frequency from 50% to 30%.
+There is no limit on how many games can be bought per year. Fixed added a spendingLimit that is randomly selected from 1 to 6 every year.
+Games that are sold aren't able to be used to buy other games. Fixed everytime a game is sold or returned spendingLimit goes up by 1.

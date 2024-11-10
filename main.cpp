@@ -79,6 +79,7 @@ void simulateGame(map<string, vector<list<string>>> &gameCollection, vector<stri
     for (size_t i = 0; i < interval; i++)
     {
         cout << "Year #" << i+1 << ":" << endl;
+        int spendingLimit = rand() % 5 + 1;
         // Iterate through each genre in the map
         for (auto x = gameCollection.begin(); x != gameCollection.end(); x++)
         {
@@ -89,12 +90,13 @@ void simulateGame(map<string, vector<list<string>>> &gameCollection, vector<stri
                 prob = rand() % 100 + 1;
             
                 // If adding, generate or select a new game title to add to the list
-                if (prob <= 30)
+                if (prob <= 30 && spendingLimit > 0)
                 {
                     ran = rand() % 99;
                     x->second[j].push_back(gamesVec[ran]);
                     cout << "Bought " << x->second[j].back() << " for " << genre[j] << " in " << x->first << " condition" << endl;
                     prob = rand() % 100 + 1;
+                    spendingLimit--;
                 }
                 // If selling, select a random game from the list to remove
                 if (prob <= 20 && x->second[j].size() > 0)
@@ -102,6 +104,7 @@ void simulateGame(map<string, vector<list<string>>> &gameCollection, vector<stri
                     cout << "Sold " << x->second[j].front() << " for " << genre[j] << " in " << x->first << " condition" << endl;
                     x->second[j].pop_front();
                     prob = rand() % 100 + 1;
+                    spendingLimit++;
                 }
                 // If returning, select a random game from the list to remove only with a different message
                 if (prob <= 10 && x->second[j].size() > 0)
@@ -109,6 +112,7 @@ void simulateGame(map<string, vector<list<string>>> &gameCollection, vector<stri
                     cout << "Returned " << x->second[j].back() << " for " << genre[j] << " in " << x->first << " condition" << endl;
                     x->second[j].pop_back();
                     prob = rand() % 100 + 1;
+                    spendingLimit++;
                 }
             }
         }
